@@ -58,7 +58,7 @@ public class StreamingSpeechRecognizer {
             RecognitionConfig recognitionConfig =
                     RecognitionConfig.newBuilder()
                             .setEncoding(RecognitionConfig.AudioEncoding.LINEAR16)
-                            .setLanguageCode("en-US")
+                            .setLanguageCode("ko-KR")
                             .setSampleRateHertz(16000)
                             .build();
             StreamingRecognitionConfig streamingRecognitionConfig =
