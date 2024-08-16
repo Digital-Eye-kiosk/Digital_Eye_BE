@@ -1,0 +1,65 @@
+plugins {
+	id 'java'
+	id 'application'
+	id 'org.springframework.boot' version '3.3.2'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'DigitalEye'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(22)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	google()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.jetbrains:annotations:23.0.0'
+
+	implementation 'com.google.cloud:google-cloud-speech:4.42.0'//구글 클라이언트 라이브러리
+	implementation 'com.google.cloud:google-cloud-apikeys:0.45.0' //ApiKeysSettings
+	implementation 'com.google.cloud:google-cloud-storage' //Storage API
+
+
+	implementation platform("com.google.cloud:libraries-bom:25.1.0")
+	implementation("com.google.cloud:google-cloud-speech") //Speech-to-text API
+	implementation("com.google.cloud:google-cloud-service-management") //Service Management API
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+application {
+	mainClassName = 'speechrecognition.SpeechRecognitionApp' // 여기서 메인 클래스를 명시적으로 지정
+}
+tasks.named('test') {
+	useJUnitPlatform()
+}
+tasks.withType(JavaCompile) {
+	options.compilerArgs << "--enable-preview"
+}
+
+tasks.withType(Test) {
+	jvmArgs '--enable-preview'
+}
+
+tasks.withType(JavaExec) {
+	jvmArgs '--enable-preview'
+}
+
