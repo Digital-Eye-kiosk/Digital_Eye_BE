@@ -1,0 +1,6 @@
+spring:
+  database:
+    url: "jdbc:mysql//localhost/train"
+    username: "root"
+    password: "eunseo1018*"
+    driver-class-name: com.mysql.cj.jdbc.Driver
