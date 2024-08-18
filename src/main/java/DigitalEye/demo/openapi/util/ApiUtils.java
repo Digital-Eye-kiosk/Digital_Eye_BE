@@ -4,7 +4,8 @@ package DigitalEye.demo.openapi.util;
 public class ApiUtils {
 
     private static final String BASE_URL = "http://apis.data.go.kr/1613000/TrainInfoService";
-    private static final String SERVICE_KEY = "YOUR_SERVICE_KEY";
+    private static final String SERVICE_KEY =
+            "3L9RQEx6rksngfO6dNnpfgs/VXkAVhLHGg8KVnASxUs9fyGlwmxHaEQHKoF4hRTrZM3wQ2YkoNFWuQoJI70puA==";
     //각각에 맞는 url생성
     public static String buildTrainInfoUrl(String depPlaceId, String arrPlaceId, String depPlandTime) {
         return BASE_URL + "/getStrtpntAlocFndTrainInfo?serviceKey=" + SERVICE_KEY

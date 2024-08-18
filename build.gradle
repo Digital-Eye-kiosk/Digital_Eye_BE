@@ -24,6 +24,11 @@ repositories {
 	mavenCentral()
 	google()
 }
+compileJava.options.encoding = "UTF-8"
+tasks.withType(JavaCompile){
+	options.encoding = "UTF-8"
+}
+
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -47,11 +52,19 @@ dependencies {
 	//공공데이터 사용을 위한
 	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 	implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	runtimeOnly 'com.h2database:h2'
+
+	implementation 'mysql:mysql-connector-java'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'mysql:mysql-connector-java:8.0.32'
+}
+application {
+	mainClassName = 'speechrecognition.sttTest'
 }
 
-application {
-	mainClassName = 'speechrecognition.SpeechRecognitionApp' // 여기서 메인 클래스를 명시적으로 지정
-}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
