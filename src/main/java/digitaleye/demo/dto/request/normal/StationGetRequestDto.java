@@ -1,6 +1,6 @@
 package digitaleye.demo.dto.request.normal;
 
-public class Station {
+public class StationGetRequestDto {
     private String station;
 
     public String getStation() {
