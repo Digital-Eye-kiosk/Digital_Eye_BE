@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -20,11 +19,11 @@ import java.util.List;
 
 
 @RestController
-public class StationController {
+public class NormalStationController {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public StationController(JdbcTemplate jdbcTemplate) {
+    public NormalStationController(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -141,7 +140,7 @@ public class StationController {
         for (int i = 0; i < itemsArray.length(); i++) {
             JSONObject item = itemsArray.getJSONObject(i);
             String nodeName = item.getString("nodename");
-            if (departure.equals(nodeName)) {
+            if (nodeName.equals(departure)) {
                 nodeId = item.getString("nodeid");
                 break;
             }
@@ -195,7 +194,7 @@ public class StationController {
         for (int i = 0; i < itemsArray.length(); i++) {
             JSONObject item = itemsArray.getJSONObject(i);
             String nodeName = item.getString("nodename");
-            if (arrival.equals(nodeName)) {
+            if (nodeName.equals(arrival)) {
                 nodeId = item.getString("nodeid");
                 break;
             }
