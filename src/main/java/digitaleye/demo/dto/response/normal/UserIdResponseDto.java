@@ -6,11 +6,11 @@ import lombok.Builder;
 import java.io.Serializable;
 
 @Builder
-public record DepRegionResponseDto(
+public record UserIdResponseDto(
         @JsonProperty(value = "id")
         Long id
 ) implements Serializable {
-    public static DepRegionResponseDto of(final Long id) {
-        return DepRegionResponseDto.builder().id(id).build();
+    public static UserIdResponseDto of(final Long id) {
+        return UserIdResponseDto.builder().id(id).build();
     }
 }

@@ -1,8 +1,8 @@
-package digitaleye.demo.dto.request.normal;
+package digitaleye.demo.dto.request.normal.station;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record ArrivalRegionRequestDto(
+public record RegionRequestDto(
         @JsonProperty(value = "id")
         Long id,
         @JsonProperty(value = "region")

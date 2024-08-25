@@ -28,11 +28,11 @@ public class User {
     @Column(name = "arr_region")
     private Integer arrRegion;
 
-    @Column(name = "departure")
-    private String departure;
+    @Column(name = "dep_station")
+    private String depStaton;
 
-    @Column(name = "arrival")
-    private String arrival;
+    @Column(name = "arr_station")
+    private String arrStation;
 
     @Column(name = "dep_date")
     private String depDate;
@@ -65,18 +65,30 @@ public class User {
     private Integer disablePrice;
 
     @Builder
-    private User(final Integer depRegion) {
-        this.depRegion = depRegion;
+    private User(final Integer option) {
+        this.option = option;
     }
 
     //Builder가 오류를 못 잡아주는 것을 잡아주기 위해
-    public static User from(final Integer depRegion) {
+    public static User from(final Integer option) {
         return User.builder()
-                .depRegion(depRegion)
+                .option(option)
                 .build();
+    }
+
+    public void updateDepRegion(final Integer depRegion) {
+        this.depRegion = depRegion;
     }
 
     public void updateArrRegion(final Integer arrRegion) {
         this.arrRegion = arrRegion;
+    }
+
+    public void updateDepStation(final String depStation) {
+        this.depStaton = depStation;
+    }
+
+    public void updateArrStation(final String arrStation) {
+        this.arrStation = arrStation;
     }
 }

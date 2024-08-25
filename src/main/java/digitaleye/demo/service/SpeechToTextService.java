@@ -1,4 +1,4 @@
-//package digitaleye.demo.service.stt;
+//package digitaleye.demo.service;
 //
 //import com.google.cloud.speech.v1.SpeechClient;
 //import com.google.cloud.speech.v1.RecognitionConfig;
@@ -22,7 +22,7 @@
 //import java.util.ArrayList;
 //import java.util.concurrent.TimeUnit;
 //
-//public class SpeechToText {
+//public class SpeechToTextService {
 //
 //    public static String streamingMicRecognize(int durationInSeconds) throws Exception {
 //        final StringBuilder transcript = new StringBuilder();
@@ -123,5 +123,18 @@
 //        }
 //
 //        return transcript.toString().trim(); // Return the transcript
+//    }
+//
+//    public static String getText() {
+//        String text = null;
+//        try {
+//            text = streamingMicRecognize(5);
+//        } catch (Exception e) {
+//            //에러 메시지 띄우기
+//            System.out.println("error: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//
+//        return text;
 //    }
 //}
