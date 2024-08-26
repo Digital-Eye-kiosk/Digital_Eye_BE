@@ -46,8 +46,8 @@ public class GetTrainService {
                 int train_num = Integer.valueOf(item.getString("trainno"));
                 String dep_station = item.getString("depplacename");
                 String arr_station = item.getString("arrplacename");
-                String dep_time = item.getString("depplandtime");
-                String arr_time = item.getString("arrplandtime");
+                String dep_time = item.getString("depplandtime").substring(8, 12);
+                String arr_time = item.getString("arrplandtime").substring(8, 12);
                 boolean sold_out = trainInfoRepository.getSoldOut(train_num, date);
                 int adult = Integer.valueOf(item.getString("adultcharge"));
                 int child = getChildPrice(adult);
