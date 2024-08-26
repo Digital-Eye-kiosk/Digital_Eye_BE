@@ -4,9 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import static digitaleye.demo.service.OpenApiService.getCityJson;
-import static digitaleye.demo.service.OpenApiService.getStationJson;
+import static digitaleye.demo.service.OpenApiService.*;
 
 public class GetCodeService {
     public static int getCityCode(String region) {
@@ -64,4 +65,28 @@ public class GetCodeService {
         return stationCode;
     }
 
+    public static List<String> getTrainTypesCode() {
+        //열차 종류 정보 받기
+        String types;
+        try {
+            types = getTrainTypeJson();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        JSONObject jsonObject = new JSONObject(types);
+        JSONArray itemsArray = jsonObject.getJSONObject("response")
+                .getJSONObject("body")
+                .getJSONObject("items")
+                .getJSONArray("item");
+
+        List<String> trainTypesCode = new ArrayList<>();;
+        for (int i = 0; i < itemsArray.length(); i++) {
+            JSONObject item = itemsArray.getJSONObject(i);
+            String trainTypeCode = item.getString("vehiclekndid");
+            trainTypesCode.add(trainTypeCode);
+        }
+
+        return trainTypesCode;
+    }
 }

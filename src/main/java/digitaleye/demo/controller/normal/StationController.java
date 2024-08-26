@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class StationController {
 
-    private final UserRepository userRepository;
     private final StationService stationService;
 
     @Transactional

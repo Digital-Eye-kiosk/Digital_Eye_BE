@@ -37,7 +37,7 @@ public class OpenApiService {
     public static String getTrainTypeJson() throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1613000/TrainInfoService/getVhcleKndList"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + "3L9RQEx6rksngfO6dNnpfgs/VXkAVhLHGg8KVnASxUs9fyGlwmxHaEQHKoF4hRTrZM3wQ2YkoNFWuQoJI70puA=="); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode("xml", "UTF-8")); /*데이터 타입(xml, json)*/
+        urlBuilder.append("&" + URLEncoder.encode("_type","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*데이터 타입(xml, json)*/
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -89,7 +89,7 @@ public class OpenApiService {
         return sb.toString();
     }
 
-    public static String getStationJson(String depPlaceId, String arrPlaceId, String depPlandTime, String trainGradeCode) throws IOException {
+    public static String getTrainJson(String depPlaceId, String arrPlaceId, String depPlandTime, String trainGradeCode) throws IOException {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1613000/TrainInfoService/getStrtpntAlocFndTrainInfo"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + "3L9RQEx6rksngfO6dNnpfgs/VXkAVhLHGg8KVnASxUs9fyGlwmxHaEQHKoF4hRTrZM3wQ2YkoNFWuQoJI70puA=="); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/

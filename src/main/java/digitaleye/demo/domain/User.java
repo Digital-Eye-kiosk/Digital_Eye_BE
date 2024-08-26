@@ -29,13 +29,13 @@ public class User {
     private Integer arrRegion;
 
     @Column(name = "dep_station")
-    private String depStaton;
+    private String depStation;
 
     @Column(name = "arr_station")
     private String arrStation;
 
-    @Column(name = "dep_date")
-    private String depDate;
+    @Column(name = "date")
+    private String date;
 
     @Column(name = "seat_number")
     private String seatNumber;
@@ -85,7 +85,7 @@ public class User {
     }
 
     public void updateDepStation(final String depStation) {
-        this.depStaton = depStation;
+        this.depStation = depStation;
     }
 
     public void updateArrStation(final String arrStation) {
