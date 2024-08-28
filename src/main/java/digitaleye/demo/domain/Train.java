@@ -20,7 +20,7 @@ public class Train {
     private Long trainId;
 
     @Column(name = "train_type")
-    private Integer trainType;
+    private String trainType;
 
     @Column(name = "train_num")
     private Integer trainNum;
@@ -47,7 +47,7 @@ public class Train {
     private boolean soldOut;
 
     @Builder
-    public Train(final Integer trainType,
+    public Train(final String trainType,
                  final Integer trainNum,
                  final String depStation,
                  final String arrStation,
@@ -69,7 +69,7 @@ public class Train {
     }
 
     //Builder가 오류를 못 잡아주는 것을 잡아주기 위해
-    public static Train from(final Integer trainType,
+    public static Train from(final String trainType,
                              final Integer trainNum,
                              final String depStation,
                              final String arrStation,

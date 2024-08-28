@@ -71,76 +71,14 @@ public class KTXSeat {
     private String carNum15;
 
     @Builder
-    public KTXSeat(final Train train,
-                   final String carNum1,
-                   final String carNum2,
-                   final String carNum3,
-                   final String carNum4,
-                   final String carNum5,
-                   final String carNum6,
-                   final String carNum7,
-                   final String carNum8,
-                   final String carNum9,
-                   final String carNum10,
-                   final String carNum11,
-                   final String carNum12,
-                   final String carNum13,
-                   final String carNum14,
-                   final String carNum15
-    ) {
+    public KTXSeat(final Train train) {
         this.train = train;
-        this.carNum1 = carNum1;
-        this.carNum2 = carNum2;
-        this.carNum3 = carNum3;
-        this.carNum4 = carNum4;
-        this.carNum5 = carNum5;
-        this.carNum6 = carNum6;
-        this.carNum7 = carNum7;
-        this.carNum8 = carNum8;
-        this.carNum9 = carNum9;
-        this.carNum10 = carNum10;
-        this.carNum11 = carNum11;
-        this.carNum12 = carNum12;
-        this.carNum13 = carNum13;
-        this.carNum14 = carNum14;
-        this.carNum15 = carNum15;
     }
 
     //Builder가 오류를 못 잡아주는 것을 잡아주기 위해
-    public static KTXSeat from(final Train train,
-                             final String carNum1,
-                             final String carNum2,
-                             final String carNum3,
-                             final String carNum4,
-                             final String carNum5,
-                             final String carNum6,
-                             final String carNum7,
-                             final String carNum8,
-                             final String carNum9,
-                             final String carNum10,
-                             final String carNum11,
-                             final String carNum12,
-                             final String carNum13,
-                             final String carNum14,
-                             final String carNum15
-    ) {
+    public static KTXSeat from(final Train train) {
         return KTXSeat.builder()
                 .train(train)
-                .carNum1(carNum1)
-                .carNum2(carNum2)
-                .carNum3(carNum3)
-                .carNum4(carNum4)
-                .carNum5(carNum5)
-                .carNum6(carNum6)
-                .carNum7(carNum7)
-                .carNum8(carNum8)
-                .carNum9(carNum9)
-                .carNum10(carNum10)
-                .carNum11(carNum11)
-                .carNum12(carNum12)
-                .carNum13(carNum13)
-                .carNum14(carNum14)
-                .carNum15(carNum15)
                 .build();
     }
 

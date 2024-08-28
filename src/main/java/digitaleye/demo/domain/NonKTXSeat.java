@@ -39,36 +39,14 @@ public class NonKTXSeat {
     private String carNum5;
 
     @Builder
-    public NonKTXSeat(final Train train,
-                   final String carNum1,
-                   final String carNum2,
-                   final String carNum3,
-                   final String carNum4,
-                   final String carNum5
-    ) {
+    public NonKTXSeat(final Train train) {
         this.train = train;
-        this.carNum1 = carNum1;
-        this.carNum2 = carNum2;
-        this.carNum3 = carNum3;
-        this.carNum4 = carNum4;
-        this.carNum5 = carNum5;
     }
 
     //Builder가 오류를 못 잡아주는 것을 잡아주기 위해
-    public static NonKTXSeat from(final Train train,
-                               final String carNum1,
-                               final String carNum2,
-                               final String carNum3,
-                               final String carNum4,
-                               final String carNum5
-    ) {
+    public static NonKTXSeat from(final Train train) {
         return NonKTXSeat.builder()
                 .train(train)
-                .carNum1(carNum1)
-                .carNum2(carNum2)
-                .carNum3(carNum3)
-                .carNum4(carNum4)
-                .carNum5(carNum5)
                 .build();
     }
 

@@ -19,7 +19,6 @@
 //public class StationController {
 //    private StationService stationService;
 //
-//    @Transactional
 //    @PatchMapping("/api/audio/departure/regions")
 //    public ResponseEntity<?> departureRegion(@RequestBody IdRequestDto idRequestDto) {
 //        RegionResponseDto regionResponseDto = stationService.updateDepartureRegion(idRequestDto);
@@ -27,7 +26,6 @@
 //        return ResponseEntity.ok(regionResponseDto);
 //    }
 //
-//    @Transactional
 //    @PatchMapping("/api/audio/arrival/regions")
 //    public ResponseEntity<?> arrivalRegion (@RequestBody IdRequestDto idRequestDto) {
 //        RegionResponseDto regionResponseDto = stationService.updateArrivalRegion(idRequestDto);
@@ -35,7 +33,6 @@
 //        return ResponseEntity.ok(regionResponseDto);
 //    }
 //
-//    @Transactional
 //    @PostMapping("/api/audio/departure")
 //    public ResponseEntity<?> departureStation (@RequestBody IdRequestDto idRequestDto) {
 //        StationResponseDto stationResponseDto = stationService.updateDepartureStation(idRequestDto);

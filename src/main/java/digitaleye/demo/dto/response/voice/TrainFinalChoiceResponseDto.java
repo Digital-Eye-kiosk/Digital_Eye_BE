@@ -1,4 +1,5 @@
-package digitaleye.demo.dto.response.both;
+package digitaleye.demo.dto.response.voice;
+
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
@@ -6,7 +7,9 @@ import lombok.Builder;
 import java.io.Serializable;
 
 @Builder
-public record TrainResponseDto(
+public record TrainFinalChoiceResponseDto(
+        @JsonProperty(value = "id")
+        Long id,
         @JsonProperty(value = "train_type")
         String trainType,
         @JsonProperty(value = "train_num")
@@ -15,46 +18,40 @@ public record TrainResponseDto(
         String depStation,
         @JsonProperty(value = "arr_station")
         String arrStation,
+        @JsonProperty(value = "date")
+        String date,
         @JsonProperty(value = "dep_time")
         String depTime,
         @JsonProperty(value = "arr_time")
         String arrTime,
+        @JsonProperty(value = "price")
+        int price,
         @JsonProperty(value = "sold_out")
-        boolean soldOut,
-        @JsonProperty(value = "adult")
-        int adult,
-        @JsonProperty(value = "child")
-        int child,
-        @JsonProperty(value = "senior")
-        int senior,
-        @JsonProperty(value = "disable")
-        int disable
+        boolean soldOut
 ) implements Serializable {
-    public static TrainResponseDto of(
+    public static TrainFinalChoiceResponseDto of(
+            final Long id,
             final String trainType,
             final int trainNum,
             final String depStation,
             final String arrStation,
+            final String date,
             final String depTime,
             final String arrTime,
-            final boolean soldOut,
-            final int adult,
-            final int child,
-            final int senior,
-            final int disable
+            final int price,
+            final boolean soldOut
     ) {
-        return TrainResponseDto.builder()
+        return TrainFinalChoiceResponseDto.builder()
+                .id(id)
                 .trainType(trainType)
                 .trainNum(trainNum)
                 .depStation(depStation)
                 .arrStation(arrStation)
+                .date(date)
                 .depTime(depTime)
                 .arrTime(arrTime)
+                .price(price)
                 .soldOut(soldOut)
-                .adult(adult)
-                .child(child)
-                .senior(senior)
-                .disable(disable)
                 .build();
     }
 }
