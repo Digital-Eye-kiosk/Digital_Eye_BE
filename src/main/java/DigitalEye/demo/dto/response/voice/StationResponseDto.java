@@ -1,22 +1,21 @@
 package DigitalEye.demo.dto.response.voice;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Id;
 import lombok.Builder;
 import java.io.Serializable;
 
 @Builder
-public record RegionGetResponseDto(
+public record StationResponseDto(
         @JsonProperty("id") Long id,
         @JsonProperty("check") int check,
-        @JsonProperty("region") String region
+        @JsonProperty("station") String station
 ) implements Serializable {
 
-    public static RegionGetResponseDto of(final Long id, int check, final String region) {
-        return RegionGetResponseDto.builder()
+    public static StationResponseDto of(final Long id, final int check, final String station) {
+        return StationResponseDto.builder()
                 .id(id)
                 .check(check)
-                .region(region)
+                .station(station)
                 .build();
     }
 }

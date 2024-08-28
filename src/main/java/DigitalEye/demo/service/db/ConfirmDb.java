@@ -15,9 +15,9 @@ public class ConfirmDb {
             user.setOption(null);
             user.setDepRegion(null);
             user.setArrRegion(null);
-            user.setDeparture(null);
-            user.setArrival(null);
-            user.setDepDate(null);
+            user.setDepStation(null);
+            user.setArrStation(null);
+            user.setDate(null);
             user.setSeatNumber(null);
             user.setAdult(null);
             user.setChild(null);
@@ -30,8 +30,10 @@ public class ConfirmDb {
 
             // 변경된 사항을 저장합니다.
             userRepository.save(user);
-        }
+        }//check값이 1이면 User테이블의 내용을 nonKTXseat또는 KTXseat테이블에 반영한다.
+        else if(confirmRequestDto.check() == 1){
 
+        }
         // 업데이트된 사용자 객체를 반환합니다.
         return user;
     }
@@ -44,9 +46,9 @@ public class ConfirmDb {
             user.setOption(null);
             user.setDepRegion(null);
             user.setArrRegion(null);
-            user.setDeparture(null);
-            user.setArrival(null);
-            user.setDepDate(null);
+            user.setDepStation(null);
+            user.setArrStation(null);
+            user.setDate(null);
             user.setSeatNumber(null);
             user.setAdult(null);
             user.setChild(null);

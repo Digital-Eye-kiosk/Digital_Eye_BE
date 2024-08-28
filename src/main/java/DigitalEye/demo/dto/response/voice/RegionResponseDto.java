@@ -5,17 +5,17 @@ import lombok.Builder;
 import java.io.Serializable;
 
 @Builder
-public record StationGetResponseDto(
+public record RegionResponseDto(
         @JsonProperty("id") Long id,
         @JsonProperty("check") int check,
-        @JsonProperty("station") String station
+        @JsonProperty("region") String region
 ) implements Serializable {
 
-    public static StationGetResponseDto of(final Long id, final int check, final String station) {
-        return StationGetResponseDto.builder()
+    public static RegionResponseDto of(final Long id, int check, final String region) {
+        return RegionResponseDto.builder()
                 .id(id)
                 .check(check)
-                .station(station)
+                .region(region)
                 .build();
     }
 }

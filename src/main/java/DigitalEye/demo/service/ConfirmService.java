@@ -8,9 +8,9 @@ import DigitalEye.demo.service.db.ConfirmDb;
 import DigitalEye.demo.service.stt.SttService;
 
 public class ConfirmService {
-    private final SttService sttService;
-    private final ConfirmDb confirmDb;
-    private final UserRepository userRepository;
+    private static SttService sttService;
+    private static ConfirmDb confirmDb;
+    private static UserRepository userRepository;
 
     public ConfirmService(SttService sttService, ConfirmDb confirmDb, UserRepository userRepository) {
         this.sttService = sttService;
@@ -26,13 +26,13 @@ public class ConfirmService {
 
         if (result.contains("네") || result.contains("예")) {
             check = 1;
+            //check가 1인 경우에만 Db update
+            User updatedUser = confirmDb.confirmVoiceDb(userRepository, onlyIdRequestDto, check);
         } else if (result.contains("아니요") || result.contains("아니오")) {
             check = 2;
         }
-        // 데이터베이스에 저장
-        User updatedUser = confirmDb.confirmVoiceDb(userRepository, onlyIdRequestDto, check);
 
         // DTO로 변환하여 반환
-        return ConfirmResponseDto.of(updatedUser.getId(), check);
+        return ConfirmResponseDto.of(onlyIdRequestDto.id(), check);
     }
 }

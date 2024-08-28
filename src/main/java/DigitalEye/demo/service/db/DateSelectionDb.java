@@ -13,7 +13,7 @@ public class DateSelectionDb {
         // depDate를 month와 day를 조합하여 생성
         String depDate = dateSelectionRequestDto.month() + "-" + dateSelectionRequestDto.day();
 
-        user.updateDepDate(depDate);
+        user.updateDate(depDate);
         // db 에러처리
 
         return user;
@@ -25,7 +25,7 @@ public class DateSelectionDb {
         // depDate를 month와 day를 조합하여 생성
         String depDate = month + "-" + day;
 
-        user.updateDepDate(depDate);
+        user.updateDate(depDate);
         // db 에러처리
 
         return user;

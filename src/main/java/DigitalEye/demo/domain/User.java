@@ -26,14 +26,14 @@ public class User {
     @Column(name = "arr_region")
     private Integer arrRegion;
 
-    @Column(name = "departure")
-    private String departure;
+    @Column(name = "dep_station")
+    private String depStation;
 
-    @Column(name = "arrival")
-    private String arrival;
+    @Column(name = "arr_station")
+    private String arrStation;
 
-    @Column(name = "dep_date")
-    private String depDate;
+    @Column(name = "date")
+    private String date;
 
     @Column(name = "seat_number")
     private String seatNumber;
@@ -74,11 +74,21 @@ public class User {
                 .build();
     }
 
+    public void updateDepRegion(final Integer depRegion) {
+        this.depRegion = depRegion;
+    }
+
     public void updateArrRegion(final Integer arrRegion) {
         this.arrRegion = arrRegion;
     }
 
-    public void updateDepDate(String depDate) {
-        this.depDate = depDate;
+    public void updateDepStation(final String depStation) {
+        this.depStation = depStation;
     }
+
+    public void updateArrStation(final String arrStation) {
+        this.arrStation = arrStation;
+    }
+
+    public void updateDate(final String depDate) { this.date = date; }
 }
