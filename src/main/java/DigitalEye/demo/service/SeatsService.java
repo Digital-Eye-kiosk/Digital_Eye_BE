@@ -3,6 +3,8 @@ package DigitalEye.demo.service;
 import DigitalEye.demo.domain.User;
 import DigitalEye.demo.dto.request.normal.SeatsRequestDto;
 import DigitalEye.demo.dto.request.voice.OnlyIdRequestDto;
+import DigitalEye.demo.dto.request.voice.SeatsRequestVoiceDto;
+import DigitalEye.demo.dto.response.normal.SeatsResponseNormalDto;
 import DigitalEye.demo.dto.response.voice.SeatsResponseDto;
 import DigitalEye.demo.repository.UserRepository;
 import DigitalEye.demo.service.db.SeatsDb;
@@ -20,33 +22,42 @@ import java.util.regex.Pattern;
 @RequiredArgsConstructor
 public class SeatsService {
     private final SttService sttService;
-    private final SeatsDb seatsDb;
-    private final UserRepository userRepository;
+    private static final SeatsDb seatsDb = null;
+    private static final UserRepository userRepository = null;
 
     @Transactional
-    public SeatsResponseDto seatsService(OnlyIdRequestDto onlyIdRequestDto){
-        // STT 실행하여 음성 인식을 통해 문자열 결과를 얻음
-        String result = sttService.recognizeSpeechFor5Seconds();
-        // 문자열 결과에서 좌석번호 추출
-        List<SeatsRequestDto.Sit> sitList = extractSitNumbers(result);
+    public static SeatsResponseNormalDto seatsNormalService(SeatsRequestDto seatsRequestDto){
 
         // 데이터베이스에 저장
-        User updatedUser = seatsDb.seatsVoiceDb(userRepository, onlyIdRequestDto, sitList);
+        User updatedUser = seatsDb.seatsNormalDb(userRepository, seatsRequestDto);
 
         // DTO로 변환하여 반환
-        return SeatsResponseDto.of(updatedUser.getId(), sitList);
+        return SeatsResponseNormalDto.of(seatsRequestDto.train_table_id());
     }
-    // 문자열에서 좌석번호 추출
-    private List<SeatsRequestDto.Sit> extractSitNumbers(String input) {
-        List<SeatsRequestDto.Sit> sitList = new ArrayList<>();
-        Pattern pattern = Pattern.compile("([A-F][0-10]+)"); // A-F로 시작하는 숫자 조합 패턴
-        Matcher matcher = pattern.matcher(input);
+    @Transactional
+    public SeatsResponseDto seatsVoiceService(SeatsRequestVoiceDto seatsRequestVoiceDto){
+        // STT 실행하여 음성 인식을 통해 문자열 결과를 얻음
+        String result = sttService.recognizeSpeechFor5Seconds();
 
-        while (matcher.find()) {
-            String sitNum = matcher.group(1);
-            sitList.add(new SeatsRequestDto.Sit(sitNum));
+        int choice;
+        switch(result.trim()) {  // 문자열의 앞뒤 공백 제거 후 비교
+            case "예":
+            case "네":
+                choice = 1;
+                //DB에 정보 저장
+                User user = seatsDb.seatsVoiceDb(userRepository,seatsRequestVoiceDto);
+                break;
+            case "아니요":
+            case "아니오":
+                choice = 2;
+                break;
+            default:
+                choice = 0;
+                break;
         }
 
-        return sitList;
+        // DTO로 변환하여 반환
+        return SeatsResponseDto.of(seatsRequestVoiceDto.train_table_id(), choice, seatsRequestVoiceDto.recommandSeat());
     }
+
 }

@@ -1,7 +1,9 @@
 package DigitalEye.demo.controller.voice;
 
 
+import DigitalEye.demo.dto.request.voice.ConfirmRequestVoiceDto;
 import DigitalEye.demo.dto.request.voice.OnlyIdRequestDto;
+import DigitalEye.demo.dto.request.voice.SeatsRequestVoiceDto;
 import DigitalEye.demo.dto.response.voice.ConfirmResponseDto;
 import DigitalEye.demo.dto.response.voice.DateSelectionResponseDto;
 import DigitalEye.demo.dto.response.voice.HeadcountResponseDto;
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class VoiceStationController {
+public class VoiceController {
 
     private final HeadcountService headcountService;
     private final DateSelectionService dateSelectionService;
@@ -43,14 +45,14 @@ public class VoiceStationController {
     }
     @Transactional
     @PatchMapping("/api/audio/seats")
-    public ResponseEntity<?> seatsVoice(@RequestBody OnlyIdRequestDto onlyIdRequestDto) {
-        SeatsResponseDto seatsResponseDto = seatsService.seatsService(onlyIdRequestDto);
+    public ResponseEntity<?> seatsVoice(@RequestBody SeatsRequestVoiceDto seatsRequestVoiceDto) {
+        SeatsResponseDto seatsResponseDto = seatsService.seatsVoiceService(seatsRequestVoiceDto);
         return ResponseEntity.ok(seatsResponseDto);
     }
     @Transactional
     @PatchMapping("/api/audio/confirm")
-    public ResponseEntity<?> confirmVoice(@RequestBody OnlyIdRequestDto onlyIdRequestDto) {
-        ConfirmResponseDto confirmResponseDto = confirmService.confirmService(onlyIdRequestDto);
+    public ResponseEntity<?> confirmVoice(@RequestBody ConfirmRequestVoiceDto confirmRequestVoiceDto) {
+        ConfirmResponseDto confirmResponseDto = confirmService.confirmVoiceService(confirmRequestVoiceDto);
         return ResponseEntity.ok(confirmResponseDto);
     }
 

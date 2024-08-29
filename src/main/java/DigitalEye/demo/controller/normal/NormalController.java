@@ -4,7 +4,11 @@ package DigitalEye.demo.controller.normal;
 import DigitalEye.demo.domain.User;
 import DigitalEye.demo.dto.request.normal.*;
 import DigitalEye.demo.dto.response.normal.OnlyIdResponseDto;
+import DigitalEye.demo.dto.response.normal.SeatsResponseNormalDto;
+import DigitalEye.demo.repository.TrainRepository;
 import DigitalEye.demo.repository.UserRepository;
+import DigitalEye.demo.service.DateSelectionService;
+import DigitalEye.demo.service.SeatsService;
 import DigitalEye.demo.service.StationService;
 import DigitalEye.demo.service.db.ConfirmDb;
 import DigitalEye.demo.service.db.DateSelectionDb;
@@ -14,17 +18,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 @RequiredArgsConstructor
-public class NormalStationController {
+public class NormalController {
 
     private final UserRepository userRepository;
+    private final TrainRepository trainRepository;
     private final StationService stationService;
+    private final DateSelectionService dateSelectionService;
 
     @Transactional
     @PatchMapping("/api/basic/departure/regions")
@@ -59,9 +64,9 @@ public class NormalStationController {
     @Transactional
     @PatchMapping("/api/basic/date") //출발일 선택
     public ResponseEntity<?> dateSelectNormal(@RequestBody DateSelectionRequestDto dateSelectionRequestDto) {
-
+        //출발일 정보 Db에 저장
         User savedUser = DateSelectionDb.dateSelectionNormalDb(userRepository, dateSelectionRequestDto);
-
+        //id정보 반환
         return ResponseEntity.ok(OnlyIdResponseDto.of(savedUser.getId()));
     }
 
@@ -78,15 +83,15 @@ public class NormalStationController {
     @PatchMapping("/api/basic/seats") //좌석정보 선택
     public ResponseEntity<?> seatsNormal(@RequestBody SeatsRequestDto seatsRequestDto){
 
-        User savedUser = SeatsDb.seatsNormalDb(userRepository, seatsRequestDto);
-        return ResponseEntity.ok(OnlyIdResponseDto.of(savedUser.getId()));
+        SeatsResponseNormalDto seatsResponseNormalDto = SeatsService.seatsNormalService(seatsRequestDto);
+        return ResponseEntity.ok(seatsResponseNormalDto);
     }
     @Transactional
-    @PatchMapping("/api/basic/confirm") //최종확인 api
-    public ResponseEntity<?> confirmNormal(@RequestBody ConfirmRequestDto confirmRequestDto){
+    @PatchMapping("/api/basic/confirm") //최종 정보 저장 api
+    public void confirmNormal(@RequestBody ConfirmRequestDto confirmRequestDto){
 
-        User savedUser = ConfirmDb.confirmNormalDb(userRepository, confirmRequestDto);
-        return ResponseEntity.ok(OnlyIdResponseDto.of(savedUser.getId()));
+        ConfirmDb.confirmNormalDb(userRepository,trainRepository ,confirmRequestDto);
+        return;
     }
 
 }

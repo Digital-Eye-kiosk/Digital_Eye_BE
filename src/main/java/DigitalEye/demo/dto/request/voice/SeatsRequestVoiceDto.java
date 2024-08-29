@@ -1,11 +1,10 @@
-package DigitalEye.demo.dto.request.normal;
+package DigitalEye.demo.dto.request.voice;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-public record SeatsRequestDto(
+public record SeatsRequestVoiceDto(
         @JsonProperty(value = "id") Long id,
         @JsonProperty(value = "train_table_id") Long train_table_id,
-        @JsonProperty(value = "seat") String seat
+        @JsonProperty(value = "recommandSeat") String recommandSeat
 ) {
 }

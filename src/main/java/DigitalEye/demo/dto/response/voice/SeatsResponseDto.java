@@ -1,29 +1,24 @@
 package DigitalEye.demo.dto.response.voice;
 
-
-import DigitalEye.demo.dto.request.normal.SeatsRequestDto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Builder
 public record SeatsResponseDto(
-        @JsonProperty(value = "id") Long id,
-        @JsonProperty(value = "selectSit") List<SeatsRequestDto.Sit> selectSit
+        @JsonProperty(value = "train_table_id") Long train_table_id,
+        @JsonProperty(value = "choice")int choice,
+        @JsonProperty(value = "seat") String seat
 ) implements Serializable {
 
-    public static SeatsResponseDto of(final Long id, final List<SeatsRequestDto.Sit> selectSit) {
+    public static SeatsResponseDto of(final Long train_table_id,final int choice, final String seat) {
         return SeatsResponseDto.builder()
-                .id(id)
-                .selectSit(selectSit)
+                .train_table_id(train_table_id)
+                .choice(choice)
+                .seat(seat)
                 .build();
     }
-
-    public static record Sit(
-            @JsonProperty(value = "sitNum") String sitNum
-    ) {}
 
 }
 

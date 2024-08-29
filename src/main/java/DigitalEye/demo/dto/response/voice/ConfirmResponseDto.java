@@ -7,13 +7,11 @@ import java.io.Serializable;
 
 @Builder
 public record ConfirmResponseDto(
-        @JsonProperty(value = "id") Long id,
         @JsonProperty(value = "check") int check
 )implements Serializable {
 
-    public static ConfirmResponseDto of(final Long id, final int check){
+    public static ConfirmResponseDto of(final int check){
         return ConfirmResponseDto.builder()
-                .id(id)
                 .check(check)
                 .build();
     }

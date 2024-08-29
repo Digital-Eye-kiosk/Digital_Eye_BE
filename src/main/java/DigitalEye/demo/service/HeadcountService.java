@@ -23,23 +23,39 @@ public class HeadcountService {
 
     @Transactional
     public HeadcountResponseDto headcountVoiceService(OnlyIdRequestDto onlyIdRequestDto) {
-        // STT 실행하여 음성 인식을 통해 문자열 결과를 얻음
-        String result = sttService.recognizeSpeechFor5Seconds();
+        try {
+            // 음성 인식을 통해 얻은 결과값을 처리
+            String result = sttService.recognizeSpeechFor5Seconds();
+            int[] counts = extractCounts(result);
 
-        // 문자열 결과에서 성인, 어린이, 노인, 장애인 인원수를 추출
-        int[] counts = extractCounts(result);
-        if (counts == null || counts.length != 4) {
-            throw new IllegalArgumentException("Invalid voice input");
+            if (counts == null || counts.length != 4) {
+                throw new IllegalArgumentException("Invalid voice input");
+            }
+
+            // 데이터베이스 업데이트
+            User updatedUser = headcountDb.headcountVoiceDb(userRepository, onlyIdRequestDto, counts[0], counts[1], counts[2], counts[3]);
+
+            // 정상 처리된 경우 DTO 반환
+            return HeadcountResponseDto.of(
+                    updatedUser.getId(),
+                    updatedUser.getAdult(),
+                    updatedUser.getChild(),
+                    updatedUser.getSenior(),
+                    updatedUser.getDisable()
+            );
+
+        } catch (IllegalArgumentException e) {
+            // 예외 발생 시 음수값이 포함된 DTO 반환
+            return HeadcountResponseDto.of(
+                    onlyIdRequestDto.id(),
+                    -1,  // Adult
+                    -1,  // Child
+                    -1,  // Senior
+                    -1   // Disable
+            );
         }
-
-        // 데이터베이스에 업데이트
-        User updatedUser = headcountDb.headcountVoiceDb(userRepository,onlyIdRequestDto, counts[0], counts[1], counts[2], counts[3]);
-
-        // DTO로 변환하여 반환
-        return HeadcountResponseDto.of(
-                updatedUser.getId(), updatedUser.getAdult(), updatedUser.getChild(),
-                updatedUser.getSenior(), updatedUser.getDisable());
     }
+
 
     // 음성 인식 결과 문자열에서 숫자를 추출하여 인원수로 변환
     private int[] extractCounts(String input) {

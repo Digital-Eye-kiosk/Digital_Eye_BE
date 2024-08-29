@@ -39,7 +39,7 @@ public class DateSelectionService {
             int day = Integer.parseInt(matcher.group(2));
             return new int[]{month, day};
         }
-
-        return null;
+        // 패턴이 맞지 않으면 음수 값을 반환
+        return new int[]{-1, -1};
     }
 }

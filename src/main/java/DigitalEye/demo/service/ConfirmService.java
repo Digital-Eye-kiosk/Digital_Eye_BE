@@ -1,24 +1,23 @@
 package DigitalEye.demo.service;
 
-import DigitalEye.demo.domain.User;
-import DigitalEye.demo.dto.request.voice.OnlyIdRequestDto;
+import DigitalEye.demo.dto.request.voice.ConfirmRequestVoiceDto;
 import DigitalEye.demo.dto.response.voice.ConfirmResponseDto;
-import DigitalEye.demo.repository.UserRepository;
+import DigitalEye.demo.repository.TrainRepository;
 import DigitalEye.demo.service.db.ConfirmDb;
 import DigitalEye.demo.service.stt.SttService;
 
 public class ConfirmService {
     private static SttService sttService;
     private static ConfirmDb confirmDb;
-    private static UserRepository userRepository;
+    private static  TrainRepository trainRepository;
 
-    public ConfirmService(SttService sttService, ConfirmDb confirmDb, UserRepository userRepository) {
+    public ConfirmService(SttService sttService, ConfirmDb confirmDb,TrainRepository trainRepository) {
         this.sttService = sttService;
         this.confirmDb = confirmDb;
-        this.userRepository = userRepository;
+        this.trainRepository = trainRepository;
     }
 
-    public ConfirmResponseDto confirmService(OnlyIdRequestDto onlyIdRequestDto){
+    public ConfirmResponseDto confirmVoiceService(ConfirmRequestVoiceDto confirmRequestVoiceDto){
         // STT 실행하여 음성 인식을 통해 문자열 결과를 얻음
         String result = sttService.recognizeSpeechFor5Seconds();
         //check변수 설정
@@ -27,12 +26,12 @@ public class ConfirmService {
         if (result.contains("네") || result.contains("예")) {
             check = 1;
             //check가 1인 경우에만 Db update
-            User updatedUser = confirmDb.confirmVoiceDb(userRepository, onlyIdRequestDto, check);
+            confirmDb.confirmVoiceDb(trainRepository, confirmRequestVoiceDto);
         } else if (result.contains("아니요") || result.contains("아니오")) {
             check = 2;
         }
 
         // DTO로 변환하여 반환
-        return ConfirmResponseDto.of(onlyIdRequestDto.id(), check);
+        return ConfirmResponseDto.of(check);
     }
 }
