@@ -18,8 +18,8 @@ public class KTXSeat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "seat_id")
-    private Long seatId;
+    @Column(name = "id")
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "train_id")

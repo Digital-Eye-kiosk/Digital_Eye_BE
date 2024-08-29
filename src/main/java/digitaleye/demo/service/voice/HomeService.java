@@ -4,10 +4,12 @@
 //import digitaleye.demo.dto.response.OptionGetResponseDto;
 //import digitaleye.demo.repository.HomeRepository;
 //import digitaleye.demo.repository.UserRepository;
+//import org.springframework.stereotype.Service;
 //
 //import static digitaleye.demo.service.CheckTextService.checkOption;
 //import static digitaleye.demo.service.stt.GetText.getText;
 //
+//@Service
 //public class HomeService {
 //    private final HomeRepository homeRepository;
 //

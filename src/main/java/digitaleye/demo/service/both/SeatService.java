@@ -7,7 +7,9 @@ import digitaleye.demo.dto.request.both.TrainIdRequestDto;
 import digitaleye.demo.dto.response.both.SeatDto;
 import digitaleye.demo.repository.*;
 import digitaleye.demo.service.GetTrainService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SeatService {
     private final SeatInfoRepository seatInfoRepository;
 
@@ -21,7 +23,7 @@ public class SeatService {
         if(isKTX) {
             KTXSeat ktxSeat = seatInfoRepository.findKTXSeat(trainIdRequestDto.id());
             return SeatDto.of(
-                    ktxSeat.getTrain().getTrainId(),
+                    ktxSeat.getTrain().getId(),
                     isKTX,
                     ktxSeat.getCarNum1(),
                     ktxSeat.getCarNum2(),
@@ -42,7 +44,7 @@ public class SeatService {
         else {
             NonKTXSeat nonKTXSeat = seatInfoRepository.findNonKTXSeat(trainIdRequestDto.id());
             return SeatDto.of(
-                    nonKTXSeat.getTrain().getTrainId(),
+                    nonKTXSeat.getTrain().getId(),
                     isKTX,
                     nonKTXSeat.getCarNum1(),
                     nonKTXSeat.getCarNum2(),

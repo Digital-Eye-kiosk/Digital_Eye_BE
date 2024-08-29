@@ -2,7 +2,9 @@ package digitaleye.demo.repository;
 
 import digitaleye.demo.domain.Train;
 import digitaleye.demo.domain.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TrainInfoRepository {
     private final UserRepository userRepository;
     private final TrainRepository trainRepository;

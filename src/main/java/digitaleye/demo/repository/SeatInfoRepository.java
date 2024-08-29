@@ -3,7 +3,9 @@ package digitaleye.demo.repository;
 import digitaleye.demo.domain.KTXSeat;
 import digitaleye.demo.domain.NonKTXSeat;
 import digitaleye.demo.domain.Train;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class SeatInfoRepository {
     public final TrainRepository trainRepository;
     public final KTXRepository ktxRepository;

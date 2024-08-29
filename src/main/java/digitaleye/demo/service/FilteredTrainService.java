@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class FilteredTrainService {
     public static List<TrainChoiceResponseDto> filtering1(List<TrainResponseDto> trains, List<String> trainTypes, String time, String date) {
         List<TrainChoiceResponseDto> filteredTrains = trains.stream()
-                .filter(train -> trainTypes.contains(train.trainType()) && train.depTime().substring(7, 9) == time)
+                .filter(train -> trainTypes.contains(train.trainType()) && train.depTime().substring(7, 9) == time && train.soldOut() == false)
                 .map(train -> TrainChoiceResponseDto.of(
                         train.trainType(),
                         train.trainNum(),

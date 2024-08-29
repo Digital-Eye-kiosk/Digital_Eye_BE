@@ -7,11 +7,13 @@ import digitaleye.demo.repository.TrainInfoRepository;
 import digitaleye.demo.repository.TrainRepository;
 import digitaleye.demo.repository.UserRepository;
 import digitaleye.demo.service.GetTrainService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 import static digitaleye.demo.service.GetCodeService.getTrainTypesCode;
 
+@Service
 public class TrainService {
     private final TrainInfoRepository trainInfoRepository;
     private final GetTrainService getTrainService;

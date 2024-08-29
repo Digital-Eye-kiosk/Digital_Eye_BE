@@ -16,8 +16,8 @@ public class Train {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "train_id")
-    private Long trainId;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "train_type")
     private String trainType;

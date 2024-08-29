@@ -5,10 +5,12 @@ import digitaleye.demo.dto.request.normal.station.RegionRequestDto;
 import digitaleye.demo.dto.request.normal.station.StationRequestDto;
 import digitaleye.demo.repository.UserRepository;
 import digitaleye.demo.repository.StationRepository;
+import org.springframework.stereotype.Service;
 
 import static digitaleye.demo.service.GetCodeService.getCityCode;
 import static digitaleye.demo.service.GetCodeService.getStationCode;
 
+@Service
 public class StationService {
     private final StationRepository stationRepository;
 

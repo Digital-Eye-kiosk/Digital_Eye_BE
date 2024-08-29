@@ -1,7 +1,9 @@
 package digitaleye.demo.repository;
 
 import digitaleye.demo.domain.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class HomeRepository {
     private final UserRepository userRepository;
 

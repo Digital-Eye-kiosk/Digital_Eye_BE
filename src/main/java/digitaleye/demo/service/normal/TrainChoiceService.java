@@ -5,7 +5,9 @@ import digitaleye.demo.domain.NonKTXSeat;
 import digitaleye.demo.domain.Train;
 import digitaleye.demo.dto.request.normal.TrainChoiceRequestDto;
 import digitaleye.demo.repository.*;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TrainChoiceService {
     private final TrainChoiceRepository trainChoiceRepository;
 
@@ -52,10 +54,10 @@ public class TrainChoiceService {
                 nonKTXSeat.updateCarNum4("00000000000000000000000000000000000000000000000000");
                 nonKTXSeat.updateCarNum5("00000000000000000000000000000000000000000000000000");
             }
-            return makeTrain.getTrainId();
+            return makeTrain.getId();
         }
         else {
-            return train.getTrainId();
+            return train.getId();
         }
     }
 }

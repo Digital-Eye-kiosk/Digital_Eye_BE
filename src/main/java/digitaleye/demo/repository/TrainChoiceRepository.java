@@ -4,7 +4,9 @@ import digitaleye.demo.domain.KTXSeat;
 import digitaleye.demo.domain.NonKTXSeat;
 import digitaleye.demo.domain.Train;
 import digitaleye.demo.domain.User;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TrainChoiceRepository {
     private final UserRepository userRepository;
     public final TrainRepository trainRepository;

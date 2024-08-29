@@ -7,12 +7,14 @@
 //import digitaleye.demo.repository.UserRepository;
 //import digitaleye.demo.repository.StationRepository;
 //import digitaleye.demo.service.SpeechToTextService;
+//import org.springframework.stereotype.Service;
 //
 //import static digitaleye.demo.service.CheckTextService.checkRegion;
 //import static digitaleye.demo.service.CheckTextService.checkStation;
 //import static digitaleye.demo.service.GetCodeService.getCityCode;
 //import static digitaleye.demo.service.GetCodeService.getStationCode;
 //
+//@Service
 //public class StationService {
 //    private final StationRepository stationRepository;
 //
