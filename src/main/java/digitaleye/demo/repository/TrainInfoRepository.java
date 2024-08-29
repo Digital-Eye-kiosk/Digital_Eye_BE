@@ -36,8 +36,4 @@ public class TrainInfoRepository {
             return train.isSoldOut();
         }
     }
-
-    public void updateSoldOut() {
-        //최종 확인하고 업데이트
-    }
 }
