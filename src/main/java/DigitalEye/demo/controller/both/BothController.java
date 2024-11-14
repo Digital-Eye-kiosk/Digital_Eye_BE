@@ -28,28 +28,28 @@ public class BothController {
     private final SeatService seatService;
 
 
-    @Transactional
+
     @GetMapping("/api/both/users") //user_table확인용 api
     public ResponseEntity<?> user(@RequestBody OnlyIdRequestDto onlyIdRequestDto) {
         UserTableResponseDto userTableResponseDto = returnTableService.returnUserTableService(onlyIdRequestDto);
         return ResponseEntity.ok(userTableResponseDto);
     }
 
-    @Transactional
+
     @GetMapping("/api/both/trainTable") //train_table확인용 api
     public ResponseEntity<?> train_table(@RequestBody TrainIdRequestDto trainIdRequestDto) {
         TrainTableResponseDto trainTableResponseDto = returnTableService.returnTrainTableService(trainIdRequestDto);
         return ResponseEntity.ok(trainTableResponseDto);
     }
 
-    @Transactional
+
     @GetMapping("/api/both/trains")
     public ResponseEntity<?> train(@RequestBody OnlyIdRequestDto onlyIdRequestDto) {
         List<TrainResponseDto> trains = trainService.getTrains(onlyIdRequestDto);
 
         return ResponseEntity.ok(trains);
     }
-    @Transactional
+
     @GetMapping("/api/both/station")
     public ResponseEntity<List<StationGetResponseDto>> train(@RequestBody StationGetRequestDto stationGetRequestDto) {
         try {
@@ -60,7 +60,7 @@ public class BothController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    @Transactional
+
     @GetMapping("/api/both/choice")
     public FinalChoiceResponseDto train(@RequestBody FinalChoiceRequestDto finalChoiceRequestDto) {
 
@@ -69,7 +69,7 @@ public class BothController {
 
     }
 
-    @Transactional
+
     @DeleteMapping("/api/reset")
     public ResponseEntity<?> usertableDelete(@RequestBody OnlyIdRequestDto onlyIdRequestDto) {
         //서비스 호출 - 서비스에서 stt실행,db저장, Dto로 반환

@@ -8,7 +8,6 @@ import DigitalEye.demo.dto.request.voice.RecommendSeatRequestDto;
 import DigitalEye.demo.dto.request.voice.SeatsRequestVoiceDto;
 import DigitalEye.demo.dto.response.voice.*;
 import DigitalEye.demo.service.*;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +25,6 @@ public class VoiceController {
     private final RecommendSeatService recommendSeatService;
 
     private final TrainChoiceService trainChoiceService;
-
-    @Transactional
     @PatchMapping("/api/audio/headcount")
     public ResponseEntity<?> headcountVoice(@RequestBody OnlyIdRequestDto onlyIdRequestDto) {
         //서비스 호출 - 서비스에서 stt실행,db저장, Dto로 반환
@@ -36,19 +33,19 @@ public class VoiceController {
         return ResponseEntity.ok(headcountResponseDto);
     }
 
-    @Transactional
+
     @PatchMapping("/api/audio/date")
     public ResponseEntity<?> dateSelectionVoice(@RequestBody OnlyIdRequestDto onlyIdRequestDto) {
         DateSelectionResponseDto dateSelectionResponseDto = dateSelectionService.DateSelectionVoiceService(onlyIdRequestDto);
         return ResponseEntity.ok(dateSelectionResponseDto);
     }
-    @Transactional
+
     @PatchMapping("/api/audio/seats")
     public ResponseEntity<?> seatsVoice(@RequestBody SeatsRequestVoiceDto seatsRequestVoiceDto) {
         SeatsResponseDto seatsResponseDto = seatsService.seatsVoiceService(seatsRequestVoiceDto);
         return ResponseEntity.ok(seatsResponseDto);
     }
-    @Transactional
+
     @PatchMapping("/api/audio/confirm")
     public ResponseEntity<?> confirmVoice(@RequestBody ConfirmRequestVoiceDto confirmRequestVoiceDto) {
         ConfirmResponseDto confirmResponseDto = confirmService.confirmVoiceService(confirmRequestVoiceDto);
