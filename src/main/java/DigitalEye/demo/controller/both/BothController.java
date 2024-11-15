@@ -9,7 +9,6 @@ import DigitalEye.demo.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,7 +45,6 @@ public class BothController {
     @GetMapping("/api/both/trains")
     public ResponseEntity<?> train(@RequestBody OnlyIdRequestDto onlyIdRequestDto) {
         List<TrainResponseDto> trains = trainService.getTrains(onlyIdRequestDto);
-
         return ResponseEntity.ok(trains);
     }
 
@@ -63,7 +61,6 @@ public class BothController {
 
     @GetMapping("/api/both/choice")
     public FinalChoiceResponseDto train(@RequestBody FinalChoiceRequestDto finalChoiceRequestDto) {
-
        FinalChoiceResponseDto finalChoiceResponseDto = finalChoiceService.getFinalChoiceResponse(finalChoiceRequestDto.train_table_id(), finalChoiceRequestDto.id());
        return ResponseEntity.ok(finalChoiceResponseDto).getBody();
 
@@ -74,14 +71,12 @@ public class BothController {
     public ResponseEntity<?> usertableDelete(@RequestBody OnlyIdRequestDto onlyIdRequestDto) {
         //서비스 호출 - 서비스에서 stt실행,db저장, Dto로 반환
         UsertableResetResponseDto usertableResetResponseDto = UsertableResetService.usertableResetService(onlyIdRequestDto);
-
         //ResponseEntity 반환 - HTTP형태
         return ResponseEntity.ok(usertableResetResponseDto);
     }
     @GetMapping("/api/both/seats")
     public ResponseEntity<?> seat(@RequestBody TrainIdRequestDto trainIdRequestDto) {
         SeatDto seatDto = seatService.getSeats(trainIdRequestDto);
-
         return ResponseEntity.ok(seatDto);
     }
 
